@@ -12,10 +12,23 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class StudentService implements IStudentService{
+    
     @Autowired
     private StudentRepository studentRepository;
+    
     @Override
     public Student addStudent(Student student) {
+        return studentRepository.save(student);
+    }
+
+    @Override
+    public Student getStudentById(Long studentId) {
+        return studentRepository.findById(studentId)
+                .orElse(null);
+    }
+
+    @Override
+    public Student updateStudent(Student student) {
         return studentRepository.save(student);
     }
     
